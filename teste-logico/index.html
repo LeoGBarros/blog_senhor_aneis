@@ -93,30 +93,34 @@
 <section class="valores">
     <h2 class="titulo_valores">Raças<span style="color: #FDB913;"> existentes</span></h2>
     <div class="slider">
+    <ul class="slider">
+        <li>
+            <input type="radio" id="slide1" name="slide"onclick="fetchCharactersRace('Human', 'Homem')"  checked>
+            <label for="slide1"></label>
+            <img src="img/raca_homem.jpg" />
+        </li>
+        <li>
+            <input type="radio" id="slide2" name="slide" onclick="fetchCharactersRace('Dwarf', 'Anão')" >
+            <label for="slide2"></label>
+            <img src="img/raca_anao.jpg" />
+        </li>
+        <li>
+            <input type="radio" id="slide3" name="slide" onclick="fetchCharactersRace('Hobbit', 'Hobbit')" />
+            <label for="slide3"></label>
+            <img src="img/raca_hobbit.jpg">
+        </li>
+        <li>
+            <input type="radio" id="slide4" name="slide" onclick="fetchCharactersRace('Elf', 'Elfo')" >
+            <label for="slide4"></label>
+            <img src="img/raca_elfos.jpg"/>
+        </li>
+    </ul>
+</div>
 
-        <ul class="slider">
-            <li>
-                  <input type="radio" id="slide1" name="slide" checked>
-                  <label for="slide1"></label>
-                  <img src="img/raca_homem.jpg" />
-            </li>
-            <li>
-                  <input type="radio" id="slide2" name="slide">
-                  <label for="slide2"></label>
-                  <img src="img/raca_anao.jpg" />
-            </li>
-            <li>
-                  <input type="radio" id="slide3" name="slide">
-                  <label for="slide3"></label>
-                  <img src="img/raca_hobbit.jpg" />
-            </li>
-            <li>
-                  <input type="radio" id="slide4" name="slide">
-                  <label for="slide4"></label>
-                  <img src="img/raca_elfos.jpg" />
-            </li>
-        </ul>
-        
+<!-- Exibição do filtro e lista de personagens -->
+
+
+    
     
 </section>
 
@@ -129,12 +133,16 @@
     <div class="div_titulo-sobre">
         <h2 class="titulo_sobre">Lorem Ipsum</h2>
         <p class="parag_quemsomos">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+        <div id="filter-text"></div>
+
     </div>
     <div class="sobre_cards">
-        <div class="card_solucao">
-            <img src="img/img_solucao01.svg" alt="" class="img_card-solucao">
+        <div class="card_solucao">            
             <div>
                 <h5 class="titulo_card-solucao">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+
+                <div id="character-list"></div>
                 <p><a href="sobre.html#ancora_saibamais01" class="card_saibamais">Saiba mais</a></p>
             </div>
         </div>
@@ -247,6 +255,31 @@
         },
     });
 </script>
+
+
+<script>
+    function fetchCharactersRace(race) {        
+        fetch(`http://localhost:3000/character/${race}`)
+            .then(response => response.json())
+            .then(data => {
+                
+                let characterList = document.getElementById('character-list');
+                characterList.innerHTML = ''; 
+                
+                if (data.length === 0) {
+                    characterList.innerHTML = `<p>Nenhum personagem encontrado para a raça ${race}</p>`;
+                } else {
+                    data.forEach(character => {
+                        characterList.innerHTML += `<p><strong>Nome:</strong> ${character.name}, <strong>Raça:</strong> ${character.race}</p>`;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar personagens:', error);
+            });
+    }
+</script>
+
 
 </body>
 </html>
