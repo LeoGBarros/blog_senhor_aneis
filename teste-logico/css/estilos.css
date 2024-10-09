@@ -364,9 +364,8 @@ body {
 
 
 /* SOBRE */
-
 .sobre {
-    background-color: var(--fundocinza);
+    background-color: var(--branco);
     padding: 80px 64px 80px 64px;
     width: 100%;
 }
@@ -391,13 +390,12 @@ body {
 
 .sobre_cards {
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
     justify-content: space-between;
     margin-top: 64px;
     max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
 @media screen and (max-width: 1200px) {
     .sobre_cards {
         flex-direction: column;
@@ -409,10 +407,10 @@ body {
 }
 
 .card_sobre {
-    background-color: var(--branco);
-    align-items: center;
+    background-color: var(--preto);
     display: flex;
     flex-direction: column;
+    align-items: center;
     border-radius: 32px;
     padding: 24px;
     max-width: 380px;
@@ -423,24 +421,44 @@ body {
     margin-bottom: 32px;
     width: 280px;
     height: 220px;
-    
 }
 
 .titulo_card-sobre {
-    color: var(--azul);
+    color: var(--branco);
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
 }
 
 .parag_card-sobre {
     color: var(--cinza);
     margin-bottom: 32px;
+    text-align: center;
+    font-size: 16px;
 }
 
 .card_saibamais {
     color: var(--verde);
     text-decoration: none;
     margin-top: auto;
-    padding-top: auto;
 }
+.lorem_text {
+    width: 45%;
+    padding-left: 20px; 
+    font-size: 16px;
+    color: var(--cinza);
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 1200px) {
+    .lorem_text {
+        width: 100%; 
+        padding-left: 0;
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+
 
 
 /* DIFERENCIAIS */
@@ -512,7 +530,7 @@ body {
 }
 
 .secao_diferenciais {
-    background-color: var(--branco);
+    background-color: var(--fundocinza);
     padding: 80px 64px 80px 64px;
     width: 100%;
 }
