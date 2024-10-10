@@ -78,14 +78,30 @@
 <section class="secao_video">
     <div class="sec_video">
         <div class="texto_video">
-            <h3 class="titulo_video"><span style="color: #FDB913;">Lorem Ipsum</span></h3>
-            <p class="parag_video">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-            <br>
-            <h3 class="titulo_video"><span style="color: #72C02C;">Lorem Ipsum Dolor</span></h3>
-            <p class="parag_video">Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.</p>
+            <h3 class="titulo_video"><span style="color: #FDB913;">Descubra se o personagem existe ou não na saga Senhor dos Anéis</span></h3>
+            <input type="text" id="characterName" placeholder="Digite o nome do personagem">
+            <button onclick="checkCharacter()">Verificar</button>
+            
         </div>
     </div>
 </section>
+
+<!-- Modal para resultado verdadeiro (personagem encontrado) -->
+<div id="modal-true" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-true')">&times;</span>
+        <p>Personagem encontrado! Ele existe na saga Senhor dos Anéis.</p>
+    </div>
+</div>
+
+<!-- Modal para resultado falso (personagem não encontrado) -->
+<div id="modal-false" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-false')">&times;</span>
+        <p>Personagem não encontrado. Esse nome não faz parte da saga Senhor dos Anéis.</p>
+    </div>
+</div>
+
 
 <!-- FIM SEÇÃO VÍDEO -->
 
@@ -93,32 +109,28 @@
 
 <section class="valores">
     <h2 class="titulo_valores">Raças<span style="color: #FDB913;"> existentes</span></h2>
-    <div class="slider">
-        <ul class="slider">
-            <li>
-                <input type="radio" id="slide1" name="slide" onclick="fetchCharactersByRace('Human', getRaceDescription('Homem'))" checked>
-                <label for="slide1"></label>
-                <img src="img/raca_homem.jpg" />
-            </li>
-            <li>
-                <input type="radio" id="slide2" name="slide" onclick="fetchCharactersByRace('Dwarf', getRaceDescription('Anão'))">
-                <label for="slide2"></label>
-                <img src="img/raca_anao.jpg" />
-            </li>
-            <li>
-                <input type="radio" id="slide3" name="slide" onclick="fetchCharactersByRace('Hobbit', getRaceDescription('Hobbit'))" />
-                <label for="slide3"></label>
-                <img src="img/raca_hobbit.jpg">
-            </li>
-            <li>
-                <input type="radio" id="slide4" name="slide" onclick="fetchCharactersByRace('Elf', getRaceDescription('Elfo'))">
-                <label for="slide4"></label>
-                <img src="img/raca_elfos.jpg" />
-            </li>
-        </ul>
+    <div class="racas-botoes">
+        <button onclick="fetchCharactersByRace('Human', getRaceDescription('Homem'))">
+            <img src="img/raca_homem.jpg" alt="Homem" />
+            <span>Homem</span>
+        </button>
+
+        <button onclick="fetchCharactersByRace('Dwarf', getRaceDescription('Anão'))">
+            <img src="img/raca_anao.jpg" alt="Anão" />
+            <span>Anão</span>
+        </button>
+
+        <button onclick="fetchCharactersByRace('Hobbit', getRaceDescription('Hobbit'))">
+            <img src="img/raca_hobbit.jpg" alt="Hobbit" />
+            <span>Hobbit</span>
+        </button>
+
+        <button onclick="fetchCharactersByRace('Elf', getRaceDescription('Elfo'))">
+            <img src="img/raca_elfos.jpg" alt="Elfo" />
+            <span>Elfo</span>
+        </button>
     </div>
 </section>
-
 
 <!-- FIM SEÇÃO VALORES -->
 
@@ -126,7 +138,7 @@
 
 <section class="sobre">
     <div class="div_titulo-sobre">
-        <h2 class="titulo_sobre">Aqui estão alguns personagens da raça selecionada:</h2>
+        <h2 class="titulo_sobre">Aqui estão algumas informações sobre a raça selecionada:</h2>
         <div id="filter-text"></div>
     </div>
     <div class="sobre_cards">
@@ -141,8 +153,6 @@
 
 
 <!-- FIM SEÇÃO SOLUÇÕES -->
-
-
 
 <!-- INÍCIO SEÇÃO DIFERENCIAIS -->
 
@@ -325,7 +335,55 @@
     }
 </script>
 
-  
+
+<script>
+    async function checkCharacter() {
+        const characterName = document.getElementById('characterName').value.trim();
+        const apiToken = 'XkBH9xRqvXkg7bFhHTWf'; 
+        
+        if (!characterName) {
+            alert("Por favor, insira o nome de um personagem.");
+            return;
+        }
+
+        try {
+            
+            const response = await axios.get('https://the-one-api.dev/v2/character', {
+                headers: {
+                    Authorization: `Bearer ${apiToken}`
+                },
+                params: {
+                    name: characterName
+                }
+            });
+
+            
+            const characterList = response.data.docs;
+
+            if (characterList.length > 0) {
+                
+                showModal('modal-true');
+            } else {
+               
+                showModal('modal-false');
+            }
+
+        } catch (error) {
+            console.error('Erro ao buscar o personagem:', error);
+            alert("Erro: Ocorreu um erro ao carregar os personagens.");
+        }
+    }
+
+    function showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = 'block';
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = 'none';
+    }
+</script>
 
 
 
