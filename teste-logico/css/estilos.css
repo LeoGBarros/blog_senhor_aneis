@@ -120,18 +120,14 @@ body {
 
 
 @media screen and (max-width: 1200px) {
-    .secao_chamada01 {
+    .secao_principal {
         padding-left: 32px;
         padding-right: 32px;
         flex-direction: column;
       
-    }
+    }    
 
-    .botao_agendar {
-        margin-bottom: 24px;
-    }
-
-    .img_chamada01 {
+    .img_principal {
         max-width: 550px;        
         padding-left: 32px;       
     }
@@ -140,17 +136,13 @@ body {
 
 
 @media screen and (max-width: 448px) {
-    .img_chamada01 {
+    .img_principal {
         max-width: 340px;        
         padding-left: 32px;        
     }
 }
 
-
-
-
-
-.secao_chamada01 {
+.secao_principal {
     background-color: var(--branco);
     padding-top: 32px;
     padding-bottom: 80px;
@@ -165,12 +157,12 @@ body {
     
 }
 
-.texto_chamada01 {
+.texto_principal {
     max-width: 550px;
 
 }
 
-.titulo_chamada01 {
+.titulo_principal {
     color: var(--preto);
     font-weight: 700;
 }
@@ -179,13 +171,9 @@ body {
     color: var(--laranja);
 }
 
-.parag_chamada01 {
+.parag_principal {
     font-size: 15px;
     color: var(--cinza);
-}
-
-.botao_agendar {
-    margin-top: 32px;
 }
 
 .lista_itens {
@@ -201,7 +189,7 @@ body {
     align-items: center;
 }
 
-.img_chamada01 {
+.img_principal {
     width: 550px;
 }
 
@@ -218,7 +206,7 @@ body {
 }
 
 
-/* VÍDEO */
+/* PESQUISA */
 .secao_pesquisa {
     background-color: var(--azul);    
     padding-top: 80px;
@@ -350,6 +338,64 @@ body {
     font-weight: bold;
     text-align: center;
 }
+
+
+/* VALORES */
+
+.valores {
+    background-color: var(--branco);
+    padding-top: 80px;
+    width: 100%;
+}
+
+.titulo_valores {
+    color: var(--azul);
+    font-weight: 700;
+    text-align: center;
+}
+
+.card_valor {
+    background-color: #F6F6FA;
+    padding: 32px 16px;
+    width: 220px;
+    height: 196px;
+    margin-top: 16px;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_valor-icon {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
+}
+
+.card_valor-texto {
+    text-align: center;
+    color: #29295B;
+}
+
+.valores_cards {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 64px;
+    margin-bottom: 80px;
+    justify-content: space-around;
+}
+
+.card_valores-img {
+    margin-top: 16px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 200px;
+}
+
+
+
 
 
 /* SOBRE */
