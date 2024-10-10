@@ -249,10 +249,10 @@
 
 <script>
     function fetchCharactersRace(race, raceName) {
-        // Atualizar a descrição da raça
+        
         updateRaceDescription(raceName);
 
-        // Fetch de personagens da raça
+        
         fetch(`http://localhost:3000/character/${race}`)
             .then(response => response.json())
             .then(data => {
@@ -271,8 +271,6 @@
                 console.error('Erro ao buscar personagens:', error);
             });
     }
-
-    // Função para atualizar a descrição da raça
     function updateRaceDescription(raceName) {
     let description = '';
 

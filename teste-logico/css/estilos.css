@@ -929,30 +929,30 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 40px; /* Espaço entre as colunas */
+    gap: 40px; 
 }
 
 #character-list {
-    flex: 1; /* Ajusta a largura conforme necessário */
+    flex: 1;
     padding-right: 20px;
 }
 
 #race-description {
     flex: 1;
-    max-width: 500px; /* Define um limite para a largura da descrição */
+    max-width: 500px; 
     padding-left: 20px;
-    border-left: 1px solid var(--cinzaclaro); /* Linha separadora entre os elementos */
+    border-left: 1px solid var(--cinzaclaro); 
 }
 
 @media screen and (max-width: 768px) {
     .conteudo-lateral {
-        flex-direction: column; /* No mobile, coloca os elementos em cima um do outro */
+        flex-direction: column; 
     }
 
     #character-list, #race-description {
         max-width: 100%;
         padding: 0;
-        border: none; /* Remove a linha separadora em telas menores */
+        border: none; 
     }
 }
 
