@@ -12,7 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
 
@@ -131,6 +132,7 @@
         <div class="card_solucao">
             <div class="conteudo-lateral">
                 <div id="character-list"></div>
+                response
                 <div id="race-description"></div>
             </div>
         </div>
@@ -333,6 +335,57 @@
 }
     updateRaceDescription('');
 </script>
+
+<script>
+    
+    async function fetchCharactersByRace(apiToken, race) {
+      try {
+        const response = await axios.get('https://the-one-api.dev/v2/character', {
+          headers: {
+            Authorization: `Bearer ${apiToken}` 
+          },
+          params: {
+            race: race
+          }
+        });
+  
+        const characterList = response.data.docs; // Supondo que os personagens estão em "docs"
+  
+        // Seleciona o elemento onde os personagens serão inseridos
+        const characterListElement = document.getElementById('character-list');
+  
+        // Limpa a lista antes de adicionar novos elementos
+        characterListElement.innerHTML = '';
+  
+        // Itera sobre os personagens e cria elementos HTML para cada um
+        characterList.forEach(character => {
+          const characterItem = document.createElement('div');
+          characterItem.classList.add('character-card'); // Classe para estilização
+  
+          // Adiciona conteúdo ao personagem, como o nome
+          characterItem.innerHTML = `
+            <h3>${character.name}</h3>
+            <p><strong>Race:</strong> ${character.race}</p>
+            <p><strong>Gender:</strong> ${character.gender || 'Unknown'}</p>
+            <p><strong>Birth:</strong> ${character.birth || 'N/A'}</p>
+          `;
+  
+          // Adiciona o personagem à lista
+          characterListElement.appendChild(characterItem);
+        });
+  
+      } catch (error) {
+        console.error('Erro ao buscar personagens:', error);
+        document.getElementById('character-list').innerHTML = '<p>Ocorreu um erro ao carregar os personagens.</p>';
+      }
+    }
+  
+    // Exemplo de uso: chamar a função passando o token e a raça
+    const apiToken = 'XkBH9xRqvXkg7bFhHTWf'; // Substitua pelo seu token
+    const race = 'Hobbit'; // Substitua pela raça desejada
+    fetchCharactersByRace(apiToken, race);
+  </script>
+  
 
 
 
