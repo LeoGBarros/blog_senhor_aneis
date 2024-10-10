@@ -96,28 +96,29 @@
     <div class="slider">
         <ul class="slider">
             <li>
-                <input type="radio" id="slide1" name="slide" onclick="fetchCharactersRace('Human', 'Homem')" checked>
+                <input type="radio" id="slide1" name="slide" onclick="fetchCharactersByRace('Human', getRaceDescription('Homem'))" checked>
                 <label for="slide1"></label>
                 <img src="img/raca_homem.jpg" />
             </li>
             <li>
-                <input type="radio" id="slide2" name="slide" onclick="fetchCharactersRace('Dwarf', 'Anão')">
+                <input type="radio" id="slide2" name="slide" onclick="fetchCharactersByRace('Dwarf', getRaceDescription('Anão'))">
                 <label for="slide2"></label>
                 <img src="img/raca_anao.jpg" />
             </li>
             <li>
-                <input type="radio" id="slide3" name="slide" onclick="fetchCharactersRace('Hobbit', 'Hobbit')" />
+                <input type="radio" id="slide3" name="slide" onclick="fetchCharactersByRace('Hobbit', getRaceDescription('Hobbit'))" />
                 <label for="slide3"></label>
                 <img src="img/raca_hobbit.jpg">
             </li>
             <li>
-                <input type="radio" id="slide4" name="slide" onclick="fetchCharactersRace('Elf', 'Elfo')">
+                <input type="radio" id="slide4" name="slide" onclick="fetchCharactersByRace('Elf', getRaceDescription('Elfo'))">
                 <label for="slide4"></label>
                 <img src="img/raca_elfos.jpg" />
             </li>
         </ul>
     </div>
 </section>
+
 
 <!-- FIM SEÇÃO VALORES -->
 
@@ -132,7 +133,6 @@
         <div class="card_solucao">
             <div class="conteudo-lateral">
                 <div id="character-list"></div>
-                response
                 <div id="race-description"></div>
             </div>
         </div>
@@ -250,141 +250,81 @@
 
 
 <script>
-    function fetchCharactersRace(race, raceName) {
-        
-        updateRaceDescription(raceName);
-
-        
-        fetch(`http://localhost:3000/character/${race}`)
-            .then(response => response.json())
-            .then(data => {
-                let characterList = document.getElementById('character-list');
-                characterList.innerHTML = ''; 
-                
-                if (data.length === 0) {
-                    characterList.innerHTML = `<p>Nenhum personagem encontrado para a raça ${race}</p>`;
-                } else {
-                    data.forEach(character => {
-                        characterList.innerHTML += `<p><strong>Nome:</strong> ${character.name}, <strong>Raça:</strong> ${character.race}</p>`;
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao buscar personagens:', error);
-            });
-    }
-    function updateRaceDescription(raceName) {
-    let description = '';
-
-    switch (raceName) {
-        case 'Homem':
-            description = '<p>Os Homens foram os segundos a nascer e os primeiros a surgir no Leste Distante durante a Primeira Era. Lá, em uma terra chamada Hildórien, eles despertaram para achar um continente selvagem e algum dia depois eles encontraram os Primogênitos, ou Elfos. </p>' + 
-            '<p>Foram os Elfos que lhes deram o nome Hildor, embora eles sejam chamados agora mais comumente na língua Quenya por Atani ou na Sindarin por Edain. Homens diferem em muitas formas dos Elfos, a mais sutil é pelo "Presente da Morte". Os Homens são mortais e vivem suas breves vidas com um fogo e uma paixão diferente de qualquer outra raça. Eles também são variados e frequentemente cheios de defeitos e vulneráveis. Ao contrário dos Primogênitos, eles são bastante suscetíveis a doenças e a temperaturas extremas. </p>' +
-            '<p> Porém, ao mesmo tempo, raramente se cansam da vida. Existem dois grandes grupos de Homens: Homens altos que são chamados comumente de Edain; e os Homens Comuns, esses não se aliaram com os Elfos nas guerras contra Morgoth. Alguns falam dos Homens do Norte como um terceiro grupo, homens medianos que são racialmente parecidos com os Edain, mas que não se beneficiaram de qualquer contato ou aliança com os Elfos.</p>';
-            break;
-        case 'Anão':
-            description = '<p>Os Anões são descendentes dos Sete Pais, os senhores originais feitos da terra pelo Vala Aulë. Ele é o ferreiro dos Valar, o doador das montanhas e mestre das artes, e os Anões o chamam Mahal.</p>' +
-                          '<p>Eles foram criados primeiro, mas Eru, o Grande, forçou seu criado Aulë a demorar o despertar deles até depois da vinda dos Elfos. Seguindo o nascimento deles, os Sete Reis formaram tribos baseadas nas suas linhas e se separaram. Embora estas Sete Tribos tenham se espalhado desde então pela Terra-Média, eles permaneceram íntimos e unidos e desfrutaram de uma reputação universal de inflexíveis, práticos, e de uma lealdade sem igual. A maioria dos grupos prefere as terras altas rochosas e cavernas profundas nas montanhas, pois os Anões, talvez mais do que qualquer raça, se lembram da sua origem e herança.</p>' +
-                          '<p>Há também os Umli, que vivem no Norte Distante da Terra-Média, uma raça de povo pequeno que aparentemente surgiu de uma união antiga entre Homens e Anões. As lendas os chamam Meio-anões.</p>';
-            break;
-        case 'Hobbit':
-            description = '<p>Os hobbits são um povo discreto e muito antigo, normalmente não ultrapassam um metro de altura, são bem menos robustos que anões e consideram a possibilidade de participarem de uma aventura como uma atitude insana, pois preferem a calma de sua vida rotineira. Amam uma região campestre organizada e bem cultivada.</p>' +
-                          '<p>São ágeis, pois acostumaram-se a fugir dos "homens grandes", a ponto de parecer magia, embora hobbits nunca tenham interesse em magia. Têm ouvidos agudos e olhos perspicazes. Eles não gostam de máquinas mais complicadas que um fole de forja, um moinho d’água ou um tear manual. Andam descalços, porque a sola de seus pés é muito espessa, não necessitando de calçados. Vivem em tocas grandes e confortáveis em uma terra ao oeste da Terra Média, chamada Shire, ou Condado.</p>' +
-                          '<p>Há três raças de hobbits: Pés-peludos, Grados e Cascalvas. Os Pés-peludos têm a pele mais escura, são menores e ágeis. Os Grados têm uma constituição mais encorpada e mãos e pés maiores. Já os Cascalvas são mais altos e têm uma relação mais próxima com os Elfos. Eles vivem da agricultura e são famosos por suas grandes festas e sua Erva-de-fumo.</p>';
-            break;
+    function getRaceDescription(race) {
+        let description = '';
+        switch (race) {
+            case 'Homem':
+                description = `
+                    <p>Os Homens foram os segundos a nascer e os primeiros a surgir no Leste Distante durante a Primeira Era. Lá, em uma terra chamada Hildórien, eles despertaram para achar um continente selvagem e algum dia depois eles encontraram os Primogênitos, ou Elfos. </p>
+                    <p>Foram os Elfos que lhes deram o nome Hildor, embora eles sejam chamados agora mais comumente na língua Quenya por Atani ou na Sindarin por Edain. Homens diferem em muitas formas dos Elfos, a mais sutil é pelo "Presente da Morte". Os Homens são mortais e vivem suas breves vidas com um fogo e uma paixão diferente de qualquer outra raça. Eles também são variados e frequentemente cheios de defeitos e vulneráveis. Ao contrário dos Primogênitos, eles são bastante suscetíveis a doenças e a temperaturas extremas. </p>
+                    <p> Porém, ao mesmo tempo, raramente se cansam da vida. Existem dois grandes grupos de Homens: Homens altos que são chamados comumente de Edain; e os Homens Comuns, esses não se aliaram com os Elfos nas guerras contra Morgoth. Alguns falam dos Homens do Norte como um terceiro grupo, homens medianos que são racialmente parecidos com os Edain, mas que não se beneficiaram de qualquer contato ou aliança com os Elfos.</p>`;
+                break;
+            case 'Anão':
+                description = `
+                    <p>Os Anões são descendentes dos Sete Pais, os senhores originais feitos da terra pelo Vala Aulë. Ele é o ferreiro dos Valar, o doador das montanhas e mestre das artes, e os Anões o chamam Mahal.</p>
+                    <p>Eles foram criados primeiro, mas Eru, o Grande, forçou seu criado Aulë a demorar o despertar deles até depois da vinda dos Elfos. Seguindo o nascimento deles, os Sete Reis formaram tribos baseadas nas suas linhas e se separaram. Embora estas Sete Tribos tenham se espalhado desde então pela Terra-Média, eles permaneceram íntimos e unidos e desfrutaram de uma reputação universal de inflexíveis, práticos, e de uma lealdade sem igual. A maioria dos grupos prefere as terras altas rochosas e cavernas profundas nas montanhas, pois os Anões, talvez mais do que qualquer raça, se lembram da sua origem e herança.</p>
+                    <p>Há também os Umli, que vivem no Norte Distante da Terra-Média, uma raça de povo pequeno que aparentemente surgiu de uma união antiga entre Homens e Anões. As lendas os chamam Meio-anões.</p>`;
+                break;
+            case 'Hobbit':
+                description = `
+                    <p>Os hobbits são um povo discreto e muito antigo, normalmente não ultrapassam um metro de altura, são bem menos robustos que anões e consideram a possibilidade de participarem de uma aventura como uma atitude insana, pois preferem a calma de sua vida rotineira. Amam uma região campestre organizada e bem cultivada.</p>
+                    <p>São ágeis, pois acostumaram-se a fugir dos "homens grandes", a ponto de parecer magia, embora hobbits nunca tenham interesse em magia. Têm ouvidos agudos e olhos perspicazes. Eles não gostam de máquinas mais complicadas que um fole de forja, um moinho d’água ou um tear manual. Andam descalços, porque a sola de seus pés é muito espessa, não necessitando de calçados. Vivem em tocas grandes e confortáveis em uma terra ao oeste da Terra Média, chamada Shire, ou Condado.</p>
+                    <p>Há três raças de hobbits: Pés-peludos, Grados e Cascalvas. Os Pés-peludos têm a pele mais escura, são menores e ágeis. Os Grados têm uma constituição mais encorpada e mãos e pés maiores. Já os Cascalvas são mais altos e têm uma relação mais próxima com os Elfos. Eles vivem da agricultura e são famosos por suas grandes festas e sua Erva-de-fumo.</p>`;
+                break;
             case 'Elfo':
-    description = `
-        <p>Nas obras de J. R. R. Tolkien, Elfos, auto-denominados Quendi, são uma das raças da Terra Média, baseados nas criaturas lendárias da Mitologia Nórdica. São uma raça que, juntamente com os homens, formam os "Filhos de Ilúvatar". Eles aparecem em <i>O Hobbit</i> e <i>O Senhor dos Anéis</i>, mas a sua história complexa é descrita mais detalhadamente em <i>O Silmarillion</i>. Tolkien estava escrevendo sobre elfos muito antes de publicar <i>O Hobbit</i>.</p>
-        
-        <p>Os Elfos são descritos como altos e belos, parecidos com os Valar (espécie de anjos), só que menores em estatura e poder. São imortais, pelo menos enquanto o Mundo, chamado Arda, existir. Não envelhecem nem adoecem, e se forem mortalmente feridos ou se sofrerem um grande desgosto, seu corpo morre, mas seu espírito sobrevive, sendo então enviado para as Mansões de Mandos, onde permanece até poder reencarnar em um corpo idêntico e com as mesmas lembranças. Um direito que os elfos têm é o de ir, se assim desejarem, para Valinor, no continente sagrado de Aman, destino esse vedado aos mortais.</p>
-        
-        <p>Os primeiros elfos teriam surgido em Cuiviénen, no extremo Leste da Terra Média, longas Eras antes da ascensão do Sol ou da Lua, no tempo em que as Duas Árvores ainda brilhavam. Foram inicialmente vistos por Oromë, mas viram primeiro as estrelas e, por isso, reverenciam Varda Elentári acima de todos os outros Valar. Convidados pelos Valar a juntarem-se no Reino Abençoado, os elfos empreenderam uma longa viagem desde Cuiviénen até à costa oeste da Terra-média.</p>
-        
-        <h3>ELDAR</h3>
-        <p>De acordo com as lendas élficas, o nome Eldar, Povo das Estrelas, foi dado a todos os Elfos pelo Vala Oromë. Entretanto, ele veio a ser usado em referência apenas aos elfos das Três Famílias (Vanyar, Noldor e Teleri) que iniciaram a Grande Marcha para o Oeste, à exceção dos Avari. Os elfos de Aman, e todos os elfos que um dia moraram em Aman, eram chamados de Tareldar "Altos-elfos" e de Calaquendi "Elfos-da-luz".</p>
-
-        <h4>As Três Famílias:</h4>
-        <ul>
-            <li><strong>Vanyar:</strong> A primeira leva dos Eldar na Marcha para o Oeste a partir de Cuiviénen, liderada por Ingwë, o Rei Supremo de Todos os Elfos. O nome Vanyar (do singular Vanya) significa "Louros", referindo-se aos cabelos dourados dos Vanyar; tinham olhos azuis e eram considerados os mais belos. Eram os maiores poetas dos povos élficos e aprenderam muito com Manwë e Varda, sendo muito amados por eles.</li>
-            <li><strong>Noldor:</strong> Os elfos-profundos, a segunda leva dos Eldar na viagem para o Oeste, liderados por Finwë. O nome (quenya noldo, sindarin golodh) significa "Sábios" (no sentido de possuidores de conhecimento). São os mais sábios e habilidosos entre os elfos; seus cabelos eram negros e seus olhos cinzentos. Aprenderam muito com Aulë.</li>
-            <li><strong>Teleri:</strong> A terceira e mais numerosa das três levas de Eldar na viagem para o Oeste, liderada por Elwë (Thingol) e seu irmão Olwë. O nome que usavam para si mesmos era Lindar "Os Cantores"; o nome Teleri "Os Últimos" foi-lhes dado pelos que estavam à frente na Marcha. Muitos dos Teleri não deixaram a Terra-média; os Sindar e os Nandor eram elfos de origem Teleri. Eles são morenos, de olhos cinzentos e cabelos prateados. Aprenderam muito com Ossë, que lhes ensinava a arte de fabricar barcos e canções sobre o Mar.</li>
-        </ul>
-
-        <h3>MORIQUENDI</h3>
-        <p>No idioma de Aman, todos os elfos que não cruzaram o Grande Mar eram chamados de elfos-escuros, ou seja, Moriquendi. No entanto, durante o Exílio dos Noldor, o termo era usado para designar os elfos da Terra-média que não fossem Noldor nem Sindar, sendo equivalente aos Avari e Úmanyar.</p>
-
-        <h4>Avari:</h4>
-        <p>Significa "Os Relutantes"; nome dado aos elfos que não quiseram se unir à marcha para o Oeste a partir de Cuiviénen.</p>
-
-        <h4>Úmanyar:</h4>
-        <p>Nome dado àqueles elfos que partiram na viagem para o Oeste a partir de Cuiviénen, mas não chegaram a Aman. Seu nome significa "Aqueles Não de Aman", em comparação com Amanyar "Aqueles de Aman". Os Úmanyar estão incluídos na classe dos Moriquendi, mas não incluem os Avari.</p>
-
-        <p><strong>Eglath:</strong> "O Povo Abandonado". De origem Telerin, ficaram na Terra-média à procura de Elwë enquanto os outros iam para Valinor.</p>
-        <p><strong>Sindar:</strong> "Os Elfos-cinzentos". São todos os elfos Telerin que os Noldor encontraram em Beleriand, à exceção dos Laiquendi.</p>
-        <p><strong>Nandor:</strong> "Os Que Dão Meia-volta". Elfos de origem Telerin, que não quiseram atravessar as Montanhas Nevoentas.</p>
-        <p><strong>Laiquendi:</strong> "Elfos-verdes". Atravessaram as Montanhas Azuis e foram morar em Ossiriand.</p>
-        <p><strong>Elfos Silvestres:</strong> Permaneceram no Vale do Anduin e na Grande Floresta Verde.</p>
-    `;
-    break;
-
-        default:
-            description = '<p>Selecione uma raça para ver a descrição.</p>';
-            break;
+                description = `
+                    <p>Nas obras de J. R. R. Tolkien, Elfos, auto-denominados Quendi, são uma das raças da Terra Média, baseados nas criaturas lendárias da Mitologia Nórdica. São uma raça que, juntamente com os homens, formam os "Filhos de Ilúvatar". Eles aparecem em <i>O Hobbit</i> e <i>O Senhor dos Anéis</i>, mas a sua história complexa é descrita mais detalhadamente em <i>O Silmarillion</i>. Tolkien estava escrevendo sobre elfos muito antes de publicar <i>O Hobbit</i>.</p>
+                    <p>Os Elfos são descritos como altos e belos, parecidos com os Valar (espécie de anjos), só que menores em estatura e poder. São imortais, pelo menos enquanto o Mundo, chamado Arda, existir. Não envelhecem nem adoecem, e se forem mortalmente feridos ou se sofrerem um grande desgosto, seu corpo morre, mas seu espírito sobrevive, sendo então enviado para as Mansões de Mandos, onde permanece até poder reencarnar em um corpo idêntico e com as mesmas lembranças.</p>`;
+                break;
+            default:
+                description = '<p>Selecione uma raça para ver a descrição.</p>';
+                break;
+        }
+        return description;
     }
-    document.getElementById('race-description').innerHTML = description;
-}
-    updateRaceDescription('');
-</script>
 
-<script>
-    
-    async function fetchCharactersByRace(apiToken, race) {
+    async function fetchCharactersByRace(race, raceDescription) {
+      const apiToken = 'XkBH9xRqvXkg7bFhHTWf';
+
       try {
         const response = await axios.get('https://the-one-api.dev/v2/character', {
           headers: {
-            Authorization: `Bearer ${apiToken}` 
+            Authorization: `Bearer ${apiToken}`
           },
           params: {
             race: race
           }
         });
-  
-        const characterList = response.data.docs; // Supondo que os personagens estão em "docs"
-  
-        // Seleciona o elemento onde os personagens serão inseridos
+
+        const raceDescriptionElement = document.getElementById('race-description');
+        raceDescriptionElement.innerHTML = `<p><strong>Descrição da Raça:</strong> ${raceDescription}</p>`;
+
+        const characterList = response.data.docs.slice(0, 10); 
         const characterListElement = document.getElementById('character-list');
-  
-        // Limpa a lista antes de adicionar novos elementos
-        characterListElement.innerHTML = '';
-  
-        // Itera sobre os personagens e cria elementos HTML para cada um
+
+        characterListElement.innerHTML = ''; 
         characterList.forEach(character => {
+
           const characterItem = document.createElement('div');
-          characterItem.classList.add('character-card'); // Classe para estilização
-  
-          // Adiciona conteúdo ao personagem, como o nome
+          characterItem.classList.add('character-card');
+
           characterItem.innerHTML = `
             <h3>${character.name}</h3>
-            <p><strong>Race:</strong> ${character.race}</p>
-            <p><strong>Gender:</strong> ${character.gender || 'Unknown'}</p>
-            <p><strong>Birth:</strong> ${character.birth || 'N/A'}</p>
+            <p><strong>Raça:</strong> ${character.race}</p>
+            <p><strong>Gênero:</strong> ${character.gender || 'Desconhecido'}</p>
+            <p><strong>Nascimento:</strong> ${character.birth || 'N/A'}</p>
           `;
-  
-          // Adiciona o personagem à lista
+
           characterListElement.appendChild(characterItem);
         });
-  
+
       } catch (error) {
         console.error('Erro ao buscar personagens:', error);
         document.getElementById('character-list').innerHTML = '<p>Ocorreu um erro ao carregar os personagens.</p>';
       }
     }
-  
-    // Exemplo de uso: chamar a função passando o token e a raça
-    const apiToken = 'XkBH9xRqvXkg7bFhHTWf'; // Substitua pelo seu token
-    const race = 'Hobbit'; // Substitua pela raça desejada
-    fetchCharactersByRace(apiToken, race);
-  </script>
+</script>
+
   
 
 
