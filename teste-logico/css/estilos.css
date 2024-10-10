@@ -925,4 +925,35 @@ body {
     z-index: 10;
 }
 
+.conteudo-lateral {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px; /* Espaço entre as colunas */
+}
+
+#character-list {
+    flex: 1; /* Ajusta a largura conforme necessário */
+    padding-right: 20px;
+}
+
+#race-description {
+    flex: 1;
+    max-width: 500px; /* Define um limite para a largura da descrição */
+    padding-left: 20px;
+    border-left: 1px solid var(--cinzaclaro); /* Linha separadora entre os elementos */
+}
+
+@media screen and (max-width: 768px) {
+    .conteudo-lateral {
+        flex-direction: column; /* No mobile, coloca os elementos em cima um do outro */
+    }
+
+    #character-list, #race-description {
+        max-width: 100%;
+        padding: 0;
+        border: none; /* Remove a linha separadora em telas menores */
+    }
+}
+
 
