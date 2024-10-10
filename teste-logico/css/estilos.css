@@ -219,14 +219,14 @@ body {
 
 
 /* VÍDEO */
-.secao_video {
+.secao_pesquisa {
     background-color: var(--azul);    
     padding-top: 80px;
     padding-bottom: 80px;
     width: 100%;
 }
 
-.sec_video {
+.sec_pesquisa {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -235,12 +235,12 @@ body {
     display: flex;
 }
 
-.texto_video {
+.texto_pesquisa {
     margin-right: 32px;
     max-width: 550px;
 }
 
-.titulo_video {
+.titulo_pesquisa {
     color: var(--branco);
     font-weight: 700;
 }
@@ -280,6 +280,22 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+.botao{
+    border: solid 1px blue;
+    border-radius: 20px;
+    color: blue;
+    margin-left: 20px;
+    background-color: white;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+.botao:hover{
+    background-color: blue;
+    color: white;
+    transform: scale(1.2)
+}
+
+
 
 
 
