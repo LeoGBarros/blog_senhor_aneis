@@ -329,18 +329,34 @@
         characterListElement.innerHTML = ''; 
         characterList.forEach(character => {
 
-          const characterItem = document.createElement('div');
-          characterItem.classList.add('character-card');
+        const characterItem = document.createElement('div');
+        characterItem.classList.add('character-card');
 
-          characterItem.innerHTML = `
-            <h3>${character.name}</h3>
-            <p><strong>Raça:</strong> ${character.race}</p>
-            <p><strong>Gênero:</strong> ${character.gender || 'Desconhecido'}</p>
-            <p><strong>Nascimento:</strong> ${character.birth || 'N/A'}</p>
-          `;
+        const translateRace = (race) => {
+        switch (race) {
+            case 'Human':
+                return 'Humano';
+            case 'Elf':
+                return 'Elfo';
+            case 'Dwarf':
+                return 'Anão';
+            case 'Hobbit':
+                return 'Hobbit';
+            default:
+                return 'Desconhecida';
+        }
+        };
 
-          characterListElement.appendChild(characterItem);
+        characterItem.innerHTML = `
+        <h3>${character.name}</h3>
+        <p><strong>Raça:</strong> ${translateRace(character.race)}</p>
+        <p><strong>Gênero:</strong> ${character.gender ? (character.gender === 'Male' ? 'Masculino' : 'Feminino') : 'Desconhecido'}</p>
+        <p><strong>Nascimento:</strong> ${character.birth || 'N/A'}</p>
+        `;
+
+        characterListElement.appendChild(characterItem);
         });
+
 
       } catch (error) {
         console.error('Erro ao buscar personagens:', error);
