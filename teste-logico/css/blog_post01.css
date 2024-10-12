@@ -217,7 +217,7 @@ body {
 
 /* FOOTER */
 
-.footer_gedui {
+.footer_blog {
     background-color: var(--fundocinzaescuro);
     padding: 80px 32px 80px 32px;
 }
@@ -299,7 +299,7 @@ body {
     }
 
 
-    .footer_solucoes {
+    .footer_sobre {
         order: 2;
         margin-top: 32px;
     }
@@ -335,3 +335,6 @@ body {
         display: none;
     }
 }
+
+
+

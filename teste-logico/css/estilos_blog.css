@@ -8,7 +8,6 @@
     --branco: #FFFFFF;
     --fundocinza: #F6F6FA;
     --fundocinzaescuro: #272A2B;
-    --verdebotao: #638F3D;
   }
 
 
@@ -92,35 +91,12 @@ body {
     
 }
 
-.botao_verde-out {
-    border: 1px solid var(--verde);
-    background-color: #ffffff;
-    border-radius: 32px;
-    color: var(--verde);
-    font-weight: 400;
-    font-size: 15px;
-    margin-left: 8px;
-    padding: 8px 16px 8px 16px;
-    white-space: nowrap;
-}
-
-.botao_verde {
-    background-color: var(--verde);
-    border-radius: 32px;
-    border: none;
-    color: #FFFFFF;
-    font-weight: 400;
-    font-size: 15px;
-    padding: 8px 16px 8px 16px;
-
-}
 
 
 /* TÍTULO BLOG */
 
 .secao_titulo-blog {
     background-color: var(--azul);
-    /* padding-left: 64px; */
     padding-top: 32px;
     padding-bottom: 32px;
     margin-top: 68px;
@@ -139,15 +115,11 @@ body {
     text-align: left;
 }
 
-
-
-
 /* SEÇÃO CARDS BLOG */
 
 .secao_cards-avo {
     background-color: var(--branco);
     width: 100%;
-    /* padding: 80px 64px 80px 64px; */
     padding-top: 80px;
     padding-bottom: 80px;
 }
@@ -211,9 +183,6 @@ body {
     }
 }
 
-
-
-
 .img_card-blog {
     width: 380px;
     height: 220px;
@@ -232,12 +201,6 @@ body {
     text-decoration: none;
 }
 
-.link_pagination {
-    color: var(--azul);
-    text-decoration: none;
-}
-
-
 .link_blog {
     text-decoration: none;
 }
@@ -246,96 +209,13 @@ body {
     text-decoration: underline 1px var(--azul);
 }
 
-.pagination {
-    margin-top: 64px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 800px;
-}
-
-.pag_lista {
-    display: flex;
-    list-style-type: none
-}
-
-.pag_item {
-    margin-right: 10px;
-    color: #000000;
-    padding: 8px 16px 8px 16px;
-    border-radius: 8px;
-}
-
 .item_ativo {
     background-color: var(--verde);
 }
 
-
-
-
 .secao_cards-filho2 {
     max-width: 400px;
 }
-
-.card_busca {
-    background-color: var(--branco);
-    border-radius: 32px;
-    border: 1px solid #DBDEE8;
-    box-shadow: 2px 2px 2px #DBDEE8;
-    width: 360px;
-    margin-top: 32px;
-    padding: 24px;
-}
-
-@media screen and (max-width: 448px) {
-    .card_busca {
-        max-width: 320px;
-    }
-}
-
-.botao_azul-card {
-    display: inline-block;
-    background-color: var(--azul);
-    border-radius: 8px;
-    color: var(--branco);
-    padding: 8px 16px 8px 16px;
-    margin-left: 0;
-    margin-top: 24px;
-    margin-bottom: 16px;
-    /* margin-right: auto; */
-}
-
-.campo_busca {
-    margin-right: 32px;
-    width: 300px;
-}
-
-.btn-text-top {
-    background-color: var(--branco);
-    border: 1px solid #A4A3B1;
-    padding: 15px 70px 15px 16px;
-    border-radius: 16px;
-    width: 300px;
-    height: 42px;
-    font-weight: 300;
-    color: var(--cinza);
-    margin: 0;
-    left: 0;
-  }
-      
-  .btn-buscar-top {
-    width: 20px!important;
-    height: 22px;
-    background: url(http://www.devmedia.com.br/imagens/2013/buscar_grey.png) no-repeat;
-    cursor: pointer!important;
-    border: none;
-    transform: translateY(-50%);
-    padding: 0;
-    position: relative;
-    top: -22px;
-    left: 260px;
-    /* left: 260px; */
-    /* left: 280px; */
-  }
 
   @media screen and (max-width: 448px) {
         .btn-text-top {
@@ -346,7 +226,6 @@ body {
             left: 240px;
         }
   }
-
 
   .card_populares {
     background-color: var(--branco);
@@ -386,97 +265,8 @@ body {
   .post_populares {
     display: flex;
     align-items: center;
-  }
-
-
-  .card_categorias {
-    border: 1px solid #DBDEE8;
-    background-color: var(--branco);
-    border-radius: 32px;
-    box-shadow: 2px 2px 2px #DBDEE8;
-    width: 360px;
-    margin-top: 64px;
-    padding: 32px;
-  }
-
-  .div_categorias {
-    align-items: center;
-    display: flex;
-    border-bottom: 1px solid #DBDEE8;
-    padding-bottom: 16px;
-    padding-top: 16px;
-  }
-
-  .img_categorias {
-    margin-right: 10px;
-    margin-left: 0;
-  }
-
-  .texto_categorias {
-    color: var(--azul);
-    font-weight: 700;
-    margin: 0;
-  }
-
-
-
- /* CHAMADA 02 */
-
-
-.secao_chamada02 {
-    background-color: var(--branco);
-    padding: 0 32px 80px 32px;
-    width: 100%;
-}
-
-.sec_chamada02-card {
-    background-color: var(--verde);
-    border-radius: 32px;
-    padding: 64px 32px 64px 32px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-@media screen and (max-width: 1200px) {
-    .sec_chamada02-card {
-        width: 100%;
-        margin-left: 0!important;
-        margin-right: 32px;
-
-    }
-}
-
-.titulo_chamada02 {
-    color: var(--branco);
-    font-weight: 700;
-    /* margin-top: 64px; */
-    text-align: center;
-}
-
-.parag_chamada02 {
-    color: var(--branco);
-    text-align: center;
-    font-size: 15px;
-    font-weight: 400;
-    margin-top: 16px;
-}
-
-
-.botao_azul {
-    background-color: var(--azul);
-    border-radius: 32px;
-    border: none;
-    color: #FFFFFF;
-    font-weight: 400;
-    font-size: 15px;
-    padding: 8px 16px 8px 16px;
-
-}
-
-.botao_center {
-    text-align: center;
-}
+  } 
+   
 
 /* FOOTER */
 
@@ -597,4 +387,17 @@ body {
     .ft_branco-direitos {
         display: none;
     }
+}
+
+.botao{
+    border: solid 1px blue;
+    border-radius: 20px;
+    color: blue;
+    background-color: white;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+.botao:hover{
+    background-color: blue;
+    color: white;
+    transform: scale(1.2)
 }
