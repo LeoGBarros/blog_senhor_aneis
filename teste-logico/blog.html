@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lorem Ipsum</title>
+    <title>Aventuras na Terra-Média</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/estilos_blog.css">
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 <body>
@@ -36,7 +37,7 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="sobre.html">Sobre</a>
@@ -65,7 +66,7 @@
 
     <section class="secao_titulo-blog">
         <div class="sec_titulo-blog">
-            <h2 class="titulo_blog">Lorem Ipsum</h2>
+            <h2 class="titulo_blog" style="color: #FDB913;">Ultimas Novidade Sobre o Universo Senhor dos Aneis</h2>
         </div>    
 
     </section>
@@ -85,8 +86,18 @@
 
                     <div class="card_blog">
                         <a href="blog_post01.html" class="link_blog"><img src="img/blog-img/aneis_poder.jpeg" alt="Lorem" class="img_card-blog">
-                        <h4 class="titulo_card-blog">Lorem Ipsum Dolor Sit Amet</h4>
-                        <p class="parag_card-blog">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p></a>
+                        <h4 class="titulo_card-blog">Saga Aneis do Poder Parte 1</h4>
+                        <p class="parag_card-blog">A primeira temporada de "Os Anéis de Poder", série ambientada no universo de "O Senhor dos Anéis"...</p></a>
+                    </div>    
+                    <div class="card_blog">
+                        <a href="blog_post02.html" class="link_blog"><img src="img/blog-img/aneis_poder.jpeg" alt="Lorem" class="img_card-blog">
+                        <h4 class="titulo_card-blog">Saga Aneis do Poder Parte 2</h4>
+                        <p class="parag_card-blog">A série explora os eventos que levaram à criação dos Anéis de Poder, a ascensão de Sauron e a formação das alianças entre elfos, anões, humanos e outras raças da Terra-média...</p></a>
+                    </div>    
+                    <div class="card_blog">
+                        <a href="blog_post01.html" class="link_blog"><img src="img/blog-img/aneis_poder.jpeg" alt="Lorem" class="img_card-blog">
+                        <h4 class="titulo_card-blog">Saga Aneis do Poder Parte 3</h4>
+                        <p class="parag_card-blog">A primeira temporada de "Os Anéis de Poder", série ambientada no universo de "O Senhor dos Anéis"...</p></a>
                     </div>    
 
 
@@ -98,17 +109,15 @@
                 <div class="secao_cards-filho2">                    
 
                     <div class="card_populares">
-                        <button class="botao" onclick="otafunc()">Descobrir</button>
-                        <div>
-
-                            <div class="post_populares">
-                                <img src="img/blog-img/aneis_poder.jpeg" alt="Lorem" class="img_populares">
-                                <a href="blog_post01.html" class="link_blog">
-                                <h6 class="texto_populares">Lorem Ipsum Dolor Sit Amet</h6></a>
-                            </div>      
-
-                        </div>
-                    </div>
+                        <span class="parag_card-blog">Gostaria de saber quais filmes/series do universo Senhor dos Aneis possuem mais indicações ao Oscar?</span>
+                        <br/><br/>
+                        <button class="botao" onclick="fetchTopMoviesByNominations()">Descobrir</button>
+                            <div>
+                                <div class="post_populares" id="post_populares">
+                                    <!-- Os filmes mais indicados ao Oscar serão exibidos aqui -->
+                                </div>
+                            </div>
+                    </div>                                      
 
                 </div>
 
@@ -170,7 +179,56 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+<script>
+    async function fetchTopMoviesByNominations() {
+    const apiToken = 'XkBH9xRqvXkg7bFhHTWf';  // Substitua pela sua chave de API válida
+  
+    try {
+      // Fazendo a requisição para buscar os filmes
+      const response = await axios.get('https://the-one-api.dev/v2/movie', {
+        headers: {
+          Authorization: `Bearer ${apiToken}`
+        }
+      });
+  
+      // Verificar se a resposta é válida
+      if (response.status !== 200 || !response.data.docs) {
+        throw new Error('Erro ao buscar os dados dos filmes.');
+      }
+
+      // Ordenando os filmes por indicações ao Oscar de forma decrescente e pegando os 3 primeiros
+      const sortedMovies = response.data.docs
+        .sort((a, b) => b.academyAwardNominations - a.academyAwardNominations)
+        .slice(0, 3); // Pegando os 3 filmes com mais indicações
+  
+      // Atualizando o conteúdo da div post_populares
+      const postPopularesDiv = document.getElementById('post_populares');
+      postPopularesDiv.innerHTML = ''; // Limpa o conteúdo anterior
+  
+      // Criando e adicionando os elementos com os dados dos filmes
+      sortedMovies.forEach(movie => {
+        const movieItem = document.createElement('div');
+        movieItem.classList.add('movie-card');
+  
+        movieItem.innerHTML = `
+          <h3>${movie.name}</h3>
+          <p><strong>Indicações ao Oscar:</strong> ${movie.academyAwardNominations}</p>
+          <p><strong>Vencedor de Oscars:</strong> ${movie.academyAwardWins}</p>
+        `;
+  
+        postPopularesDiv.appendChild(movieItem);
+      });
+  
+    } catch (error) {
+      console.error('Erro ao buscar filmes:', error);
+      document.getElementById('post_populares').innerHTML = '<p>Ocorreu um erro ao carregar os filmes.</p>';
+    }
+  }
+
+</script>
 
 
 </body>

@@ -23,24 +23,41 @@ body {
 
 /* NAV BAR */
 
-.logo_gedui {
-    width: 150px;
-}
 
 .sec_navbar {
     background-color: var(--azul);
     width: 100%;
     position: fixed;
-    /* overflow: hidden; */
+    z-index: 100;
     top: 0;
     height: 68px;
-    box-shadow: 0 0 5px var(--azul);
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 0 10px #AAAAAA;
+}
 
+@media screen and (max-width: 991px) {
+    .nav_sombreado {
+        border-bottom: 1px solid #CCCCCC;
+        padding-bottom: 16px;
+        margin: 0!important;
+        width: 100%;
+    }
+}
+
+.logo_blog {
+    width: 70px;
+    text-align: left;
+    margin: 0px!important;
+    padding: 0px!important;
+}
+
+.div_logo {
+    padding: 0;
 }
 
 
-
-.navbar_gedui {
+.navbar_blog {
     align-items: center;
     background-color: var(--azul);
     display: flex;
@@ -52,23 +69,12 @@ body {
 }
 
 @media screen and (max-width: 1200px) {
-    .navbar_gedui {
+    .navbar_blog
+ {
         padding-left: 32px;
         padding-right: 32px;
     }
 }
-
-.botao_nav-bar {
-    margin: 0 0 0 auto;
-    text-align: right;
-}
-
-.div_botao-navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 0;
-}
-
 
 
 .navbar-nav {
@@ -83,32 +89,8 @@ body {
 
 .nav-link:hover {
     text-decoration: underline 2px var(--laranja);
-    color: var(--branco);
+    color: var(--cinza);
     
-}
-
-.botao_verde-out {
-    border: 1px solid var(--verde);
-
-    background-color: var(--azul);
-    border-radius: 32px;
-    color: var(--verde);
-    font-weight: 400;
-    font-size: 15px;
-    margin-left: 8px;
-    padding: 8px 16px 8px 16px;
-    white-space: nowrap;
-}
-
-.botao_verde {
-    background-color: var(--verdebotao);
-    border-radius: 32px;
-    border: none;
-    color: #FFFFFF;
-    font-weight: 400;
-    font-size: 15px;
-    padding: 8px 16px 8px 16px;
-
 }
 
 .secao_post-blog {
@@ -317,8 +299,6 @@ body {
     .footer_icones {
         order: 5;
     }
-
-
 
     .footer_icones {
         margin-top: 24px;
