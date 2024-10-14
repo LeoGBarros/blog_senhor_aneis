@@ -578,6 +578,51 @@ body {
     text-align: center;
 }
 
+.secao_citacao {
+    background-color: #1f1f1f;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.titulo_citacao {
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.dispositivos {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#quoteDisplay {
+    list-style-type: none;
+    padding: 0;
+}
+
+#quoteDisplay li {
+    margin: 10px 0;
+    font-family: 'Times New Roman', serif;
+    font-size: 18px;
+}
+#characterName {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FDB913;
+}
+#quoteText {
+    font-size: 16px;
+    font-style: italic;
+    color: #bfbfbf;
+    margin-top: 10px;
+}
+
 .mapa {
     max-width: 1200px;
     margin-top: 80px;
