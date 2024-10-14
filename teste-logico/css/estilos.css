@@ -253,7 +253,16 @@ body {
     width: 50%;
     text-align: center;
     border-radius: 10px;
+    
 }
+.modal-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 15px; 
+    margin: 0 auto; 
+    display: block; 
+}
+
 
 .close {
     color: #aaa;
