@@ -46,10 +46,10 @@
                         <a class="nav-link" href="blog.html">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html"><img src="img/icons/icon_brasil.svg" alt="Ícone do Brasil"></a>
+                        <a class="nav-link" href="blog.html"><img src="img/icons/icon_brasil.svg" alt="Ícone do Brasil"></a>
                     </li>                
                     <li class="nav-item">
-                        <a class="nav-link" href="index_us.html"><img src="img/icons/icon_us.svg" alt="Ícone do Reino Unido"></a>
+                        <a class="nav-link" href="blog_us.html"><img src="img/icons/icon_us.svg" alt="Ícone do Reino Unido"></a>
                     </li>                   
                     </li>
                 
@@ -182,31 +182,23 @@
 
 <script>
     async function fetchTopMoviesByNominations() {
-    const apiToken = 'XkBH9xRqvXkg7bFhHTWf';  // Substitua pela sua chave de API válida
+    const apiToken = 'XkBH9xRqvXkg7bFhHTWf'; 
   
-    try {
-      // Fazendo a requisição para buscar os filmes
+    try {      
       const response = await axios.get('https://the-one-api.dev/v2/movie', {
         headers: {
           Authorization: `Bearer ${apiToken}`
         }
       });
-  
-      // Verificar se a resposta é válida
       if (response.status !== 200 || !response.data.docs) {
         throw new Error('Erro ao buscar os dados dos filmes.');
       }
-
-      // Ordenando os filmes por indicações ao Oscar de forma decrescente e pegando os 3 primeiros
       const sortedMovies = response.data.docs
         .sort((a, b) => b.academyAwardNominations - a.academyAwardNominations)
-        .slice(0, 3); // Pegando os 3 filmes com mais indicações
-  
-      // Atualizando o conteúdo da div post_populares
+        .slice(0, 3);   
+      
       const postPopularesDiv = document.getElementById('post_populares');
-      postPopularesDiv.innerHTML = ''; // Limpa o conteúdo anterior
-  
-      // Criando e adicionando os elementos com os dados dos filmes
+      postPopularesDiv.innerHTML = ''; 
       sortedMovies.forEach(movie => {
         const movieItem = document.createElement('div');
         movieItem.classList.add('movie-card');

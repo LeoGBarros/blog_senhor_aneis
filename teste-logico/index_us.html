@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Lorem Ipsum</title>
+    <title>Aventuras na Terra-Média</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -12,7 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
 
@@ -24,7 +25,7 @@
   
 
             <div class="container-fluid div_logo">
-                <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="Logotipo do Blog" class="logo_blog"></a>
+                <a class="navbar-brand" href="index_us.html"><img src="img/logo.png" alt="Logotipo do Blog" class="logo_blog"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,13 +34,13 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="index_us.html">Characters</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="sobre.html">Sobre</a>
+                        <a class="nav-link" href="sobre_us.html">About </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
+                        <a class="nav-link" href="blog_us.html">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.html"><img src="img/icons/icon_brasil.svg" alt="Ícone do Brasil"></a>
@@ -59,56 +60,78 @@
 
 <!-- SEÇÃO CHAMADA PRINCIPAL -->
 
-<section class="secao_chamada01">
-    <div class="texto_chamada01">
-        <h2 class="titulo_chamada01">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-        <p class="parag_chamada01">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus auctor libero at nisl malesuada, a gravida nulla sodales.</p>
+<section class="secao_principal">
+    <div class="texto_principal">
+        <h2 class="titulo_principal">The Journey Through Middle Earth: Exploring The Lord of the Rings</h2>
+        <p class="parag_principal">J.R.R. Tolkien's epic saga transports us to a fantastic world, where the fates of peoples and kingdoms are intertwined in the fight against evil. Here, we will explore characters, mythologies and the latest news that The Lord of the Rings offers us. Get ready for an adventure!</p>
     </div>
     <div class="imagem_e_creditos">
-        <img src="img/img_chamada01-1.svg" alt="Imagem da chamada principal" class="img_chamada01">
-        <p class="texto_creditos-img">Créditos da imagem: Freepik</p>
+        <img src="img/img_principal.jpg" alt="Imagem da chamada principal" class="img_principal">
+        <p class="texto_creditos-img">Image credits: QueroCinema </p>
     </div>
 </section>
+
 
 <!-- FIM SEÇÃO CHAMADA PRINCIPAL -->
 
-<!-- INÍCIO SEÇÃO VÍDEO -->
+<!-- INÍCIO SEÇÃO PESQUISA -->
 
-<section class="secao_video">
-    <div class="sec_video">
-        <div class="texto_video">
-            <h3 class="titulo_video"><span style="color: #FDB913;">Lorem Ipsum</span></h3>
-            <p class="parag_video">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
-            <br>
-            <h3 class="titulo_video"><span style="color: #72C02C;">Lorem Ipsum Dolor</span></h3>
-            <p class="parag_video">Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.</p>
+<section class="secao_pesquisa">
+    <div class="sec_pesquisa">
+        <div class="texto_pesquisa">
+            <h3 class="titulo_pesquisa"><span style="color: #FDB913;">
+                Find out whether or not the character exists in the Lord of the Rings saga
+            </span></h3>
+            <input type="text" id="characterName" placeholder="Character name">
+            <button class="botao" onclick="checkCharacter()">To check</button>
+            
         </div>
     </div>
 </section>
+
+<!-- Modal para resultado verdadeiro (personagem encontrado) -->
+<div id="modal-true" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-true')">&times;</span>
+        <p>Character found! It exists in the Lord of the Rings saga.</p>
+    </div>
+</div>
+
+<!-- Modal para resultado falso (personagem não encontrado) -->
+<div id="modal-false" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modal-false')">&times;</span>
+        <p>Character not found. This name is not part of the Lord of the Rings saga.</p>
+    </div>
+</div>
+
 
 <!-- FIM SEÇÃO VÍDEO -->
 
 <!-- INÍCIO SEÇÃO VALORES -->
 
 <section class="valores">
-    <h2 class="titulo_valores">Nossos<span style="color: #FDB913;"> valores</span></h2>
-    <div class="valores_cards">
-        <div class="card_valor">
-            <img src="img/icons/icons_card/icon_valores-inovacao.svg" class="card_valor-icon" alt="Ícone card">
-            <h5 class="card_valor-texto"><strong>Lorem</strong></h5>
-        </div>
-        <div class="card_valor">
-            <img src="img/icons/icons_card/icon_valores-etica.svg" class="card_valor-icon" alt="Ícone card">
-            <h5 class="card_valor-texto"><strong>Ipsum</strong></h5>
-        </div>
-        <div class="card_valor">
-            <img src="img/icons/icons_card/icon_valores-conhecimento.svg" class="card_valor-icon" alt="Ícone card">
-            <h5 class="card_valor-texto"><strong>Dolor</strong></h5>
-        </div>
-        <div class="card_valor">
-            <img src="img/icons/icons_card/icon_valores-resultado.svg" class="card_valor-icon" alt="Ícone card">
-            <h5 class="card_valor-texto"><strong>Sit Amet</strong></h5>
-        </div>
+    <h2 class="titulo_valores">Race<span style="color: #FDB913;"> existing</span></h2>
+    <div class="racas-botoes">
+        <button onclick="fetchCharactersByRace('Human', getRaceDescription('Homem'))">
+            <img src="img/raca_homem.jpg" alt="Homem" />
+            <span>Human</span>
+        </button>
+
+        <button onclick="fetchCharactersByRace('Dwarf', getRaceDescription('Anão'))">
+            <img src="img/raca_anao.jpg" alt="Anão" />
+            <span>Dwarf</span>
+        </button>
+
+        <button onclick="fetchCharactersByRace('Hobbit', getRaceDescription('Hobbit'))">
+            <img src="img/raca_hobbit.jpg" alt="Hobbit" />
+            <span>Hobbit</span>
+        </button>
+
+        <button onclick="fetchCharactersByRace('Elf', getRaceDescription('Elfo'))">
+            <img src="img/raca_elfos.jpg" alt="Elfo" />
+            <span>Elf</span>
+        </button>
     </div>
 </section>
 
@@ -118,32 +141,34 @@
 
 <section class="sobre">
     <div class="div_titulo-sobre">
-        <h2 class="titulo_sobre">Lorem Ipsum</h2>
-        <p class="parag_quemsomos">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h2 class="titulo_sobre">Here is some information about the selected breed:</h2>
+        <div id="filter-text"></div>
     </div>
     <div class="sobre_cards">
         <div class="card_solucao">
-            <img src="img/img_solucao01.svg" alt="" class="img_card-solucao">
-            <div>
-                <h5 class="titulo_card-solucao">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
-                <p><a href="sobre.html#ancora_saibamais01" class="card_saibamais">Saiba mais</a></p>
+            <div class="conteudo-lateral">
+                <div id="character-list"></div>
+                <div id="race-description"></div>
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- FIM SEÇÃO SOLUÇÕES -->
 
 <!-- INÍCIO SEÇÃO DIFERENCIAIS -->
 
 <section class="secao_diferenciais">
-    <h2 class="titulo_diferenciais">Lorem Ipsum<span style="color: #FDB913;"> Dolor Sit</span></h2>
-    <div class="dispositivos">
-        <ul>
-            <li>Lorem ipsum</li>
-            <li>Dolor sit amet</li>
-        </ul>
-    </div>
+    <h2 class="titulo_diferenciais">Map <span style="color: #FDB913;"> Middle Earth</span></h2>
+    <div class="mapa">
+        <p>Explore Middle Earth like never before! Discover every region, kingdom and city in Tolkien's universe with this interactive map. Click on the link below and start your journey: </p>
+        
+            <li><a href="http://lotrproject.com/map" target="_blank">Access the Interactive Map of Middle Earth</a></li>
+        
+        <img src="img/mapa_terramedia.jpg" alt="Mapa da Terra Média">
+    </div>    
+        
 </section>
 
 <!-- FIM SEÇÃO DIFERENCIAIS -->
@@ -151,13 +176,26 @@
 <!-- INÍCIO SEÇÃO BLOG -->
 
 <section class="secao_blog">
-    <h2 class="titulo_blog">Últimas do blog</h2>
+    <h2 class="titulo_blog">Latest from the blog</h2>
     <div class="blog_cards">
         <div class="card_blog">
-            <a href="blog_post20.html" class="link_blog">
-                <img src="img/blog-img/post20.jpg" alt="Imagem de postagem do Blog" class="img_card-blog">
-                <h4 class="titulo_card-blog">Lorem Ipsum: Dolor Sit Amet</h4>
-                <p class="parag_card-blog">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <a href="blog_post01.html" class="link_blog">
+                <img src="img/blog-img/aneis_poder.jpeg" alt="Imagem de postagem do Blog" class="img_card-blog">
+                <h4 class="titulo_card-blog">Rings of Power Saga Part 1</h4>
+                <p class="parag_card-blog">The first season of "The Rings of Power", a series set in the universe of "The Lord of the Rings"...</p>
+            </a>
+        </div>
+        <div class="card_blog">
+            <a href="blog_post02.html" class="link_blog">
+                <img src="img/blog-img/aneis_poder.jpeg" alt="Imagem de postagem do Blog" class="img_card-blog">
+                <h4 class="titulo_card-blog">Rings of Power Saga Part 2</h4>
+                <p class="parag_card-blog">The series explores the events that led to the creation of the Rings of Power, the rise of Sauron, and the formation of alliances between elves, dwarves, humans, and other races of Middle-earth...</p>
+            </a>
+        </div>
+        <div class="card_blog">
+                <img src="img/blog-img/aneis_poder.jpeg" alt="Imagem de postagem do Blog" class="img_card-blog">
+                <h4 class="titulo_card-blog">Rings of Power Saga Part 3</h4>
+                <p class="parag_card-blog">Waiting for news about pre-launch.</p>
             </a>
         </div>
     </div>
@@ -171,38 +209,36 @@
     <div class="div_footer">
         <div class="ft_rights">
             <img src="img/logo.png" alt="Lorem Ipsum" class="logo_footer">
-            <p class="ft_laranja-slogan">Lorem ipsum dolor,<br>sit amet.</p>
+            <p class="ft_laranja-slogan">Adventures in Middle-earth.</p>
             <br>
             <!-- <br> -->
-            <p class="ft_branco-direitos">Lorem <script>document.write(new Date().getFullYear())</script> - Lorem Ipsum</p>
+            <p class="ft_branco-direitos">Adventures in Middle-earth - <script>document.write(new Date().getFullYear())</script></p>
         </div>
 
 
 
         <div class="footer_sobre">
-            <p class="ft_laranja">Lorem Ipsum</p>
-            <p class="ft_branco"><a href="sobre.html#ancora_saibamais01" class="link_footer">Lorem Ipsum</a></p>
-            <p class="ft_branco"><a href="sobre.html#ancora_saibamais02" class="link_footer">Lorem Ipsum</a></p>
+            <p class="ft_laranja">About us</p>
+            <p class="ft_branco"><a href="sobre.html#sobre" class="link_footer">About</a></p>
         </div>
 
         <div class="footer_links">
-            <p class="ft_laranja">Lorem Ipsum</p>
-            <p class="ft_branco"><a href="blog.html" class="link_footer">Lorem Ipsum</a></p>           
+            <p class="ft_laranja">Posts</p>
+            <p class="ft_branco"><a href="blog.html" class="link_footer">Blog</a></p>           
         </div>
 
         <div class="footer_politicas">            
-            <p class="ft_laranja">Lorem Ipsum</p>
+            <p class="ft_laranja">Contact</p>
             <p class="ft_branco"><a class="link_footer" href="mailto:lorem@ipsum.com">lorem@ipsum.com</a></p>
         </div>
 
 
 
         <div class="footer_icones">
-            <a href="https://wa.me/5511942858706" target="_blank"><img src="img/icons/icon_whatsapp.svg" alt="Lorem Ipsum" class="footer_icon-redes"></a>
+            <a href="https://wa.me/" target="_blank"><img src="img/icons/icon_whatsapp.svg" alt="Lorem Ipsum" class="footer_icon-redes"></a>
             <a href="https://www.facebook.com/loremipsum/" target="_blank"><img src="img/icons/icon_facebook.svg" alt="Lorem Ipsum" class="footer_icon-redes"></a>
             <a href="https://www.instagram.com/lorem_ipsum/" target="_blank"><img src="img/icons/icon_instagram.svg" alt="Lorem Ipsum" class="footer_icon-redes"></a>
             <a href="https://www.linkedin.com/company/loremipsum/" target="_blank"><img src="img/icons/icon_linkedin.svg" alt="Lorem Ipsum" class="footer_icon-redes"></a>
-            <!-- <a href="#" target="_blank"><img src="img/icons/icon_youtube.svg" alt="Lorem Ipsum" class="footer_icon-redes"></a> -->
         </div>
     </div>
 
@@ -236,6 +272,145 @@
         },
     });
 </script>
+
+
+<script>
+    function getRaceDescription(race) {
+        let description = '';
+        switch (race) {
+            case 'Homem':
+                description = `
+                    <p>Men were the second to be born and the first to emerge in the Far East during the First Age. There, in a land called Hildórien, they awoke to find a wild continent, and some time later, they encountered the Firstborn, or Elves.</p> <p>It was the Elves who gave them the name Hildor, although they are now more commonly called Atani in the Quenya language or Edain in Sindarin. Men differ from Elves in many ways, the most subtle being the "Gift of Death." Men are mortal and live their brief lives with a fire and passion unlike any other race. They are also varied and frequently full of flaws and vulnerabilities. Unlike the Firstborn, they are quite susceptible to diseases and extreme temperatures.</p> <p>However, at the same time, they rarely grow weary of life. There are two major groups of Men: the tall Men, commonly called Edain; and the Common Men, who did not ally with the Elves in the wars against Morgoth. Some speak of the Men of the North as a third group, medium-sized men who are racially similar to the Edain but who did not benefit from any contact or alliance with the Elfs.</p>`;
+                break;
+            case 'Anão':
+                description = `
+                    <p>Dwarves are descendants of the Seven Fathers, the original lords made from the earth by the Vala Aulë. He is the smith of the Valar, the giver of mountains, and the master of crafts, and the Dwarves call him Mahal.</p> <p>They were created first, but Eru, the Great, forced his servant Aulë to delay their awakening until after the coming of the Elves. Following their birth, the Seven Kings formed tribes based on their lines and separated. Although these Seven Tribes have since spread across Middle-earth, they remained close and united and earned a universal reputation for being steadfast, practical, and unmatched in loyalty. Most groups prefer rocky highlands and deep mountain caves, as Dwarves, perhaps more than any other race, remember their origin and heritage.</p> <p>There are also the Umli, who live in the Far North of Middle-earth, a small race of people who apparently arose from an ancient union between Men and Dwarves. Legends call them Half-dwarves.</p>`;
+                break;
+            case 'Hobbit':
+                description = `
+                    <p>Hobbits are a discreet and very ancient people, usually no more than a meter tall, much less robust than dwarves, and they consider the possibility of going on an adventure as an insane attitude, as they prefer the calm of their routine life. They love an organized and well-cultivated countryside.</p> <p>They are agile, as they have grown accustomed to fleeing from "big men," almost to the point of seeming magical, although hobbits never have any interest in magic. They have sharp ears and keen eyes. They do not like machines more complicated than a forge bellows, a water mill, or a manual loom. They walk barefoot because the soles of their feet are very thick, so they do not need shoes. They live in large and comfortable burrows in a land to the west of Middle-earth, called the Shire.</p> <p>There are three races of hobbits: Harfoots, Stoors, and Fallohides. The Harfoots have darker skin, are smaller, and are agile. The Stoors have a stockier build and larger hands and feet. The Fallohides are taller and have a closer relationship with the Elves. They live off agriculture and are famous for their large parties and their Pipe-weed.</p>`;
+                break;
+            case 'Elfo':
+                description = `
+                    <p>In the works of J. R. R. Tolkien, Elves, self-named Quendi, are one of the races of Middle-earth, based on the legendary creatures of Norse mythology. They are a race that, together with Men, form the "Children of Ilúvatar." They appear in <i>The Hobbit</i> and <i>The Lord of the Rings</i>, but their complex history is described in more detail in <i>The Silmarillion</i>. Tolkien was writing about elves long before publishing <i>The Hobbit</i>.</p> <p>Elves are described as tall and beautiful, similar to the Valar (a kind of angelic beings), only smaller in stature and power. They are immortal, at least as long as the World, called Arda, exists. They neither age nor fall ill, and if they are mortally wounded or suffer great sorrow, their body dies, but their spirit survives, being sent to the Halls of Mandos, where it remains until it can reincarnate in an identical body with the same memories.</p>`;
+                break;
+            default:
+                description = '<p>Select a breed to see the description</p>';
+                break;
+        }
+        return description;
+    }
+
+    async function fetchCharactersByRace(race, raceDescription) {
+      const apiToken = 'XkBH9xRqvXkg7bFhHTWf';
+
+      try {
+        const response = await axios.get('https://the-one-api.dev/v2/character', {
+          headers: {
+            Authorization: `Bearer ${apiToken}`
+          },
+          params: {
+            race: race
+          }
+        });
+
+        const raceDescriptionElement = document.getElementById('race-description');
+        raceDescriptionElement.innerHTML = `<p><strong>Race Description:</strong> ${raceDescription}</p>`;
+
+        const characterList = response.data.docs.slice(0, 10); 
+        const characterListElement = document.getElementById('character-list');
+
+        characterListElement.innerHTML = ''; 
+        characterList.forEach(character => {
+
+        const characterItem = document.createElement('div');
+        characterItem.classList.add('character-card');
+
+        const translateRace = (race) => {
+        switch (race) {
+            case 'Human':
+                return 'Human';
+            case 'Elf':
+                return 'Elf';
+            case 'Dwarf':
+                return 'Dwarf';
+            case 'Hobbit':
+                return 'Hobbit';
+            default:
+                return 'Desconhecida';
+        }
+        };
+
+        characterItem.innerHTML = `
+        <h3>${character.name}</h3>
+        <p><strong>Race:</strong> ${translateRace(character.race)}</p>
+        <p><strong>Gender:</strong> ${character.gender ? (character.gender === 'Male' ? 'Male' : 'Female') : 'Desconhecido'}</p>
+        <p><strong>Birth:</strong> ${character.birth || 'N/A'}</p>
+        `;
+
+        characterListElement.appendChild(characterItem);
+        });
+
+
+      } catch (error) {
+        console.error('Erro ao buscar personagens:', error);
+        document.getElementById('character-list').innerHTML = '<p>Ocorreu um erro ao carregar os personagens.</p>';
+      }
+    }
+</script>
+
+
+
+<script>
+    async function checkCharacter() {
+        const characterName = document.getElementById('characterName').value.trim();
+        const apiToken = 'XkBH9xRqvXkg7bFhHTWf'; 
+        
+        if (!characterName) {
+            alert("Por favor, insira o nome de um personagem.");
+            return;
+        }
+
+        try {
+            
+            const response = await axios.get('https://the-one-api.dev/v2/character', {
+                headers: {
+                    Authorization: `Bearer ${apiToken}`
+                },
+                params: {
+                    name: characterName
+                }
+            });
+
+            
+            const characterList = response.data.docs;
+
+            if (characterList.length > 0) {
+                
+                showModal('modal-true');
+            } else {
+               
+                showModal('modal-false');
+            }
+
+        } catch (error) {
+            console.error('Erro ao buscar o personagem:', error);
+            alert("Erro: Ocorreu um erro ao carregar os personagens.");
+        }
+    }
+
+    function showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = 'block';
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = 'none';
+    }
+</script>
+
+
 
 </body>
 </html>
