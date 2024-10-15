@@ -403,10 +403,6 @@ body {
     width: 200px;
 }
 
-
-
-
-
 /* SOBRE */
 .sobre {
     background-color: var(--branco);
@@ -502,8 +498,6 @@ body {
         text-align: center;
     }
 }
-
-
 
 /* DIFERENCIAIS */
 
@@ -686,7 +680,6 @@ body {
     color: var(--cinza);
     text-align: center;
 }
-
 
 
 /* BLOG */
